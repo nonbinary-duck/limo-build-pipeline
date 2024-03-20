@@ -10,3 +10,6 @@
 [submodule "ros-items/limo_ros2"]
 	path = ros-items/limo_ros2
 	url = git@github.com:LCAS/limo_ros2.git
+[submodule "ros-items/teaching"]
+	path = ros-items/teaching
+	url = git@github.com:LCAS/teaching.git
