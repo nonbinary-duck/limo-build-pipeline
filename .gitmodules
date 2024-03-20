@@ -1,0 +1,12 @@
+[submodule "system-items/libuvc"]
+	path = system-items/libuvc
+	url = git@github.com:libuvc/libuvc.git
+[submodule "system-items/magic_enum"]
+	path = system-items/magic_enum
+	url = git@github.com:Neargye/magic_enum.git
+[submodule "system-items/YDLidar-SDK"]
+	path = system-items/YDLidar-SDK
+	url = git@github.com:YDLIDAR/YDLidar-SDK.git
+[submodule "ros-items/limo_ros2"]
+	path = ros-items/limo_ros2
+	url = git@github.com:LCAS/limo_ros2.git
