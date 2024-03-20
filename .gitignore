@@ -1,0 +1,4 @@
+# Don't track things built
+**/build
+**/bin
+**/install
