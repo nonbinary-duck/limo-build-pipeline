@@ -1,6 +1,6 @@
 ## What is this and why?
 
-This is the a configuration which facilitates building some ROS2 Humble packages maintained by [LCAS](https://github.com/LCAS).
+This is a configuration which facilitates building some ROS2 Humble packages maintained by [LCAS](https://github.com/LCAS).
 
 Those packages are typically provided in a convenient docker image which works well. The docker image is portable, easy to develop with and integrates support for the Zenoh ros2 DDS bridge so there truly is little need for `make`-your-own stuff. However, I enjoy wasting my time and so I have `make`ed-my-own.
 
@@ -12,7 +12,7 @@ This pipeline requires a recent version of Ubuntu. The instructions have been te
 
 First, the system must be setup.
 
-Add the ROS2 PPA to Ubuntu if you haven't already.
+Add the ROS2 PPA to Ubuntu if not already present.
 
 You can do this following the [ROS Humble docs](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). Or just:
 
@@ -145,6 +145,6 @@ To get that final foo/bar path you could also execute (and copy into your clipbo
 echo "source ~/$(realpath --relative-base="$HOME" .)/ros-items/install/setup.bash"
 ```
 
-Use of realpath taken from [this stack overflow question](https://stackoverflow.com/a/62684928).
+Use of realpath taken from [this stack overflow answer](https://stackoverflow.com/a/62684928).
 
 
