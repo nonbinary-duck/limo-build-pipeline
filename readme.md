@@ -2,7 +2,7 @@
 
 This is the a configuration which facilitates building some ROS2 Humble packages maintained by [LCAS](https://github.com/LCAS).
 
-Those packages are typically provided in an extremely convenient docker image which works very well. The docker image is portable, easy to develop with and integrates support for the Zenoh ros2 DDS bridge so there truly is little need for `make`-your-own stuff. However, I enjoy wasting my time and so I have `make`ed-my-own.
+Those packages are typically provided in a convenient docker image which works well. The docker image is portable, easy to develop with and integrates support for the Zenoh ros2 DDS bridge so there truly is little need for `make`-your-own stuff. However, I enjoy wasting my time and so I have `make`ed-my-own.
 
 ## Build Instructions
 
