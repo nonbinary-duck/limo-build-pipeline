@@ -6,7 +6,7 @@ Those packages are typically provided in an extremely convenient docker image wh
 
 ## Build Instructions
 
-This pipeline requires a recent version of Ubuntu. The instructions have been tested on a "blank" Ubuntu 22.04 (LTS) server disk image.
+This pipeline requires a recent version of Ubuntu. The instructions have been tested on an Ubuntu 22.04 (LTS) server live disk install image.
 
 ### System
 
@@ -72,7 +72,7 @@ There are some things we can't get from aptitude, so we build them too! We've al
 
 Note that in Ubuntu 22.04 there is a `libuvc-dev` package, however the astra camera package fails to build under that version so we install it from source instead of using apt.
 
-In any particular order, as none of these packages depend on another, use standard CMake build steps and finish with a system-level install for convenience:
+In no particular order, as none of these packages depend on another, use standard CMake build steps and finish with a system-level install for convenience:
 
 ```bash
 # Start in the root directory of this cloned repo
@@ -81,8 +81,8 @@ cd ./system-items/libuvc && mkdir build && cd build && cmake ..
 # Make libuvc with up to 20 (this number is meaningless) parallel jobs
 make -j20 && sudo make install
 
-# Make magic_enum
-cd ../../magic_enum && mkdir build && cd build && cmake .. && make -j20 && sudo make install
+# Make magic_enum, it fails using large job numbers sometimes
+cd ../../magic_enum && mkdir build && cd build && cmake .. && make -j4 && sudo make install
 
 # Make YDLidar-SDK
 cd ../../YDLidar-SDK && mkdir build && cd build && cmake .. && make -j20 && sudo make install
@@ -100,7 +100,13 @@ cd ./ros-items/
 source /opt/ros/humble/setup.bash
 
 # Build our packages
+# If this command fails due to "Killed signal terminated program cc1plus", try running the command again
 colcon build
+
+# Source what we've built
+# We won't be able to use it yet since we need gazebo, see next section!
+# But you can inspect the packages
+source install/setup.bash
 ```
 
 
@@ -108,17 +114,19 @@ colcon build
 
 To use these packages gazebo is required. An easy way to do this is just:
 ```bash
-# It should work with just the gazebo packages turtlebot uses, but you can just install all of it too
-sudo apt install ros-humble-turtlebot3-gazebo ros-humble-gazebo*
+# It should work with just the gazebo packages turtlebot uses, or maybe just the base gazebo package
+# But failing that you can just install all of it too with `sudo apt install ros-humble-gazebo*`
+sudo apt install ros-humble-turtlebot3-gazebo
 ```
 
 Additionally, some environment variables are required. Adding these lines to the end of your `~/.bashrc` file works:
 ```bash
-export GAZEBO_MODEL_PATH="/usr/share/gazebo-11/models"
+export GAZEBO_MODEL_PATH="/usr/share/gazebo-11/models:"
 export GAZEBO_PLUGIN_PATH="/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:"
-export GAZEBO_MODEL_DATABASE_URI="http://models.gazebosim.org"
 export GAZEBO_RESOURCE_PATH="/usr/share/gazebo-11:"
+export GAZEBO_MODEL_DATABASE_URI="http://models.gazebosim.org"
 
+# If you're using turtlebot3
 export TURTLEBOT3_MODEL=waffle
 ```
 
